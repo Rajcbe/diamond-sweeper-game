@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Diamond Sweeper
 
 ## Problem Statement
@@ -53,3 +54,6 @@ You may also choose to try some of the bonus parts of this problem:
 4. (Javascript) - Cover logic in your application with meaningful tests
 5. (Infra) - Get hot reloading working
 6. (Infra) - Get asset pipelining and minification working
+=======
+# diamond-sweeper-game
+>>>>>>> cc5192ebeadbc229edc64db4103181a5266cf350
