@@ -1,0 +1,19 @@
+html{
+  background: #badc58;
+  padding:10px;
+}
+.container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .box-wrapper{
+    width:400px;
+    height:400px;
+    border:4px solid #8ead36;
+    display: grid;
+    grid-template-columns: auto auto auto auto auto auto auto auto;
+    >div{
+      border:2px solid #fff;
+    }
+  }
+}

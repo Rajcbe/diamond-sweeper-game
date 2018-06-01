@@ -69,6 +69,8 @@ module.exports={
             filename:"./css/[name].css",
             disable:!isProd,
             allChunks:true
-        })
+        }),
+        new webpack.NamedModulesPlugin(),
+        new webpack.HotModuleReplacementPlugin(),
     ]
 };
