@@ -1,43 +1,75 @@
-const webpack = require("webpack");
-const process = require('process');
-const path = require('path');
-
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
-
-const PUBLIC_PATH='/assets/';
-const OUTPUT_DIRECTORY = __dirname + `/public/${PUBLIC_PATH}`;
-
-const BABEL_PRESET = {
-  loader: 'babel-loader',
-  options: {
-    presets: ['es2015']
-  }
-};
-
-module.exports = {
-    entry: {
-      app: "./app/client/app.js",
-      style: "./app/stylesheets/style.scss"
+const webpack = require('webpack');
+const path = require("path");
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const isProd = process.env.NODE_ENV === 'production';
+const cssDev=['style-loader','css-loader','sass-loader'];
+const cssProd= ExtractTextPlugin.extract({
+    fallback: "style-loader",
+    use: ["css-loader","sass-loader"],
+    publicPath:'../'
+})
+const cssConfig =isProd ? cssProd :cssDev;
+module.exports={
+    entry:{
+        index:'./views/index.js',
     },
-    output: {
-        path: OUTPUT_DIRECTORY,
-        filename: `[name].js`,
-        publicPath: PUBLIC_PATH,
+    output:{
+        path:__dirname+'/public',
+        filename:'[name].bundle.js',
     },
     module: {
-      rules: [
-        { test: /\.jsx?$/, exclude: /node_modules/, use: BABEL_PRESET },
-        { test: /\.jsx?$/, include: /node_modules\/quintype-toddy-libs/, use: BABEL_PRESET },
-        { test: /\.(sass|scss)$/, loader: ExtractTextPlugin.extract('css-loader!sass-loader') },
-        {
-          test: /\.(jpe?g|gif|png|svg|woff|ttf|wav|mp3)$/,
-          loader: "file-loader",
-          query: {
-            context: './app/assets',
-            name: "[name].[ext]"
-          }
-        }
-      ]
+        rules: [
+            {
+                test: /\.js$/,
+                include: path.resolve(__dirname, 'src'),
+                use: [{
+                    loader: 'babel-loader',
+                    options: {
+                        // presets: [
+                        //     ['es2015', { modules: false }]
+                        // ]
+                    }
+                }]
+            },
+            {
+                test: /\.scss$/,
+                use: cssConfig
+            },
+
+            {
+                test: /\.(gif|png|jpg|svg)$/i,
+                use:[
+                    {
+                        loader: 'srcset-loader',
+                    },
+                    'file-loader?name=[name].[ext]&outputPath=images/',
+                    'image-webpack-loader']
+            }
+        ]
     },
-    plugins: [new ExtractTextPlugin({ filename: "[name].css", allChunks: true })]
+
+    devServer: {
+        contentBase: path.join(__dirname, "public"),
+        compress: true,
+        hot:true
+    },
+    plugins: [
+        new HtmlWebpackPlugin(
+            {
+                title:'Qunitype Task',
+                minify:{
+                    collapseWhitespace:true
+                },
+                template:'./views/index.html'
+            }
+        ),
+        new ExtractTextPlugin({
+            filename:"./css/[name].css",
+            disable:!isProd,
+            allChunks:true
+        }),
+        new webpack.NamedModulesPlugin(),
+        new webpack.HotModuleReplacementPlugin(),
+    ]
 };
