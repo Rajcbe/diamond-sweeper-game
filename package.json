@@ -3,8 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./app.js",
-    "dev": "webpack-dev-server",
+    "start": "node ./start.js",
+    "dev": "webpack-dev-server --open",
     "prod": "NODE_ENV=production webpack -p"
   },
   "dependencies": {

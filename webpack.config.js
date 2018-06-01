@@ -52,7 +52,8 @@ module.exports={
     devServer: {
         contentBase: path.join(__dirname, "public"),
         compress: true,
-        hot:true
+        hot:true,
+        port:9000
     },
     plugins: [
         new HtmlWebpackPlugin(
@@ -68,8 +69,6 @@ module.exports={
             filename:"./css/[name].css",
             disable:!isProd,
             allChunks:true
-        }),
-        new webpack.NamedModulesPlugin(),
-        new webpack.HotModuleReplacementPlugin(),
+        })
     ]
 };
