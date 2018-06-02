@@ -19,14 +19,14 @@ table.diamondsweeper-board {
   background-size: 50px 50px;
 
   &.diamond {
-    background-image: url(diamond.png);
+    background-image: url(../../views/images/diamond.png);
   }
 
   &.arrow {
-    background-image: url(arrow.png);
+    background-image: url(../../views/images/arrow.png);
   }
 
   &.unknown {
-    background-image: url(question.png);
+    background-image: url(../../views/images/question.png);
   }
 }

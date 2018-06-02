@@ -16,7 +16,7 @@ import diamondImg from './images/diamond.png';
              'background-size': 'contain'
      };
 
-
+    let imgChangCount=0;
     let randomPositions = [];
 
     function startApp(){
@@ -35,16 +35,27 @@ import diamondImg from './images/diamond.png';
 
              item.addEventListener('click', changeImage);
              let box = item.getAttribute('id');
-             item.style.backgroundImage = `${bgImage['background-diamond-image']},${bgImage['background-que-image']}`;
-             item.style.backgroundPosition = `${bgImage['background-que-position']},${bgImage['background-diamond-position']}`;
-             item.style.backgroundSize = `${bgImage['background-size']}`;
-             item.style.backgroundRepeat = `${bgImage['background-repeat']}`;
 
+             if (randomPositions.includes(box)) {
 
+                 item.style.backgroundImage = `${bgImage['background-diamond-image']},${bgImage['background-que-image']}`;
+                 item.style.backgroundPosition = `${bgImage['background-que-position']},${bgImage['background-diamond-position']}`;
+                 item.style.backgroundSize = `${bgImage['background-size']}`;
+                 item.style.backgroundRepeat = `${bgImage['background-repeat']}`;
+
+             }
+             else {
+                    item.style.backgroundImage      = `url(${bgImage['background-que-image']})`;
+                    item.style.backgroundPosition   = `center`;
+                    item.style.backgroundSize       = `${bgImage['background-size']}`;
+                    item.style.backgroundRepeat     = `${bgImage['background-repeat']}`;
+                  }
 
          }
      }
     function changeImage(event) {
+        imgChangCount++;
+        console.log(imgChangCount);
         console.log(event.target.id);
         let id = event.target.id;
         let chElement = document.getElementById(id);
