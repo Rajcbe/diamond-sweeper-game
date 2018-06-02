@@ -15,16 +15,32 @@ import diamondImg from './images/diamond.png';
              'background-repeat': 'no-repeat',
              'background-size': 'contain'
      };
-     function startApp(){
+
+
+    let randomPositions = [];
+
+    function startApp(){
          console.log('load grid..');
+
+        const totalGrid    = 64;
+        const totalDiamonds  = 8;
+
+        for (let i = 0; i < totalDiamonds; i++ ) {
+            let position = Math.floor(Math.random() * 64) + 1;
+            randomPositions.push(`box-${position}`);
+             }
+        console.log(randomPositions);
          //display image in grid
          for (let item of container.children){
-             item.style.backgroundImage = `${bgImage['background-que-image']},${bgImage['background-diamond-image']}`;
+
+             item.addEventListener('click', changeImage);
+             let box = item.getAttribute('id');
+             item.style.backgroundImage = `${bgImage['background-diamond-image']},${bgImage['background-que-image']}`;
              item.style.backgroundPosition = `${bgImage['background-que-position']},${bgImage['background-diamond-position']}`;
              item.style.backgroundSize = `${bgImage['background-size']}`;
              item.style.backgroundRepeat = `${bgImage['background-repeat']}`;
 
-             item.addEventListener('click', changeImage);
+
 
          }
      }
