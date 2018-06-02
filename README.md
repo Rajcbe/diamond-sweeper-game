@@ -25,6 +25,8 @@ STEP 1:-> npm install
 
 STEP 2:-> npm start
 
+       ->->project app will start in http://localhost:3000/
+
 For DEVELOPEMENT MODE:
 
 Step 1: -> npm run dev
