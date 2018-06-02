@@ -1,6 +1,9 @@
 html{
   background: #badc58;
   padding:10px;
+  .title{
+  text-align: center;
+  }
 }
 .container{
   display: flex;
@@ -15,5 +18,8 @@ html{
     >div{
       border:2px solid #fff;
     }
+  }
+  .score-container{
+    display: none;
   }
 }

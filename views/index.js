@@ -18,6 +18,7 @@ import diamondImg from './images/diamond.png';
 
     let imgChangCount=0;
     let randomPositions = [];
+    let maxScore = 56;
 
     function randomNumberCalc() {
         const totalDiamonds  = 8;
@@ -42,7 +43,7 @@ import diamondImg from './images/diamond.png';
     }
     function startApp(){
          console.log('load grid..');
-
+         imgChangCount=0;
        randomNumberCalc();
          //display image in grid
          for (let item of container.children){
@@ -87,14 +88,28 @@ import diamondImg from './images/diamond.png';
                     ${bgImage['background-que-position']}
                 `;
                 chElement.removeEventListener('click', changeImage);
+                calculateScore(maxScore);
                 startApp();
                 return;
             }
         }
         else {
+            maxScore--;
            chElement.style.background='none';
         }
         chElement.removeEventListener('click', changeImage);
     }
-     startApp();
+    function calculateScore(total) {
+
+        let template = document.getElementById('score-container');
+        let score = document.getElementById('current-score');
+
+        template.style.display = 'block';
+        score.innerHTML = `Your Score is ${total}`;
+    }
+
+
+    startApp();
+
+
 })();
