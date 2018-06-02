@@ -17,9 +17,10 @@ import diamondImg from './images/diamond.png';
      };
      function startApp(){
          console.log('load grid..');
+         //display image in grid
          for (let item of container.children){
-             item.style.backgroundImage = `${bgImage['background-que-image']},{bgImage['background-diamond-image']}`;
-             item.style.backgroundPosition = `${bgImage['background-que-position']},{bgImage['background-diamond-position']}`;
+             item.style.backgroundImage = `${bgImage['background-que-image']},${bgImage['background-diamond-image']}`;
+             item.style.backgroundPosition = `${bgImage['background-que-position']},${bgImage['background-diamond-position']}`;
              item.style.backgroundSize = `${bgImage['background-size']}`;
              item.style.backgroundRepeat = `${bgImage['background-repeat']}`;
 
@@ -28,8 +29,13 @@ import diamondImg from './images/diamond.png';
          }
      }
     function changeImage(event) {
-        console.log(event.target.getAttribute('class'));
-        console.log('image clicked');
+        console.log(event.target.id);
+        let id = event.target.id;
+        let chElement = document.getElementById(id);
+        //change position of images on click.
+        chElement.style.backgroundPosition = `${bgImage['background-diamond-position']},${bgImage['background-que-position']}`;
+        console.log('changed img');
+        chElement.removeEventListener('click', changeImage);
     }
      startApp();
 })();
