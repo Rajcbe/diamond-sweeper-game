@@ -18,7 +18,7 @@ import diamondImg from './images/diamond.png';
 
     let imgChangCount=0;
     let randomPositions = [];
-    let maxScore = 56;
+    let maxScore;
 
     function randomNumberCalc() {
         const totalDiamonds  = 8;
@@ -44,6 +44,7 @@ import diamondImg from './images/diamond.png';
     function startApp(){
          console.log('load grid..');
          imgChangCount=0;
+         maxScore=56;
        randomNumberCalc();
          //display image in grid
          for (let item of container.children){

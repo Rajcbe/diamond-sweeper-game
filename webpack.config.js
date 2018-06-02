@@ -9,6 +9,7 @@ const cssProd= ExtractTextPlugin.extract({
     use: ["css-loader","sass-loader"],
     publicPath:'../'
 })
+
 const cssConfig =isProd ? cssProd :cssDev;
 module.exports={
     entry:{
@@ -27,7 +28,7 @@ module.exports={
                     loader: 'babel-loader',
                     options: {
                         presets: [
-                            ['es2015', { modules: false }]
+                            ['es2015']
                         ]
                     }
                 }]
@@ -52,7 +53,7 @@ module.exports={
         contentBase: path.join(__dirname, "public"),
         compress: true,
         hot:true,
-        port:9000
+        port:9000,
     },
     plugins: [
         new HtmlWebpackPlugin(
