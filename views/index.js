@@ -11,7 +11,7 @@ import diamondImg from './images/diamond.png';
              'background-que-image':  'url(' + queImg + ')',
              'background-diamond-image': 'url(' + diamondImg + ')',
              'background-que-position': '600px',
-             'background-diamond-position': '5px',
+             'background-diamond-position': '0px',
              'background-repeat': 'no-repeat',
              'background-size': 'contain'
      };
@@ -109,8 +109,6 @@ import diamondImg from './images/diamond.png';
         score.innerHTML = `Your Score is ${total}`;
     }
 
-
     startApp();
-
 
 })();

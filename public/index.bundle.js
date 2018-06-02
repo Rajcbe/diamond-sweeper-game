@@ -61,7 +61,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "d740d7587e5183fe34c8"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "72ec717539059d5d8e50"; // eslint-disable-line no-unused-vars
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
@@ -765,7 +765,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
              'background-que-image':  'url(' + __WEBPACK_IMPORTED_MODULE_1__images_question_png___default.a + ')',
              'background-diamond-image': 'url(' + __WEBPACK_IMPORTED_MODULE_2__images_diamond_png___default.a + ')',
              'background-que-position': '600px',
-             'background-diamond-position': '5px',
+             'background-diamond-position': '0px',
              'background-repeat': 'no-repeat',
              'background-size': 'contain'
      };
@@ -863,9 +863,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         score.innerHTML = `Your Score is ${total}`;
     }
 
-
     startApp();
-
 
 })();
 
