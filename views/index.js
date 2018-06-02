@@ -22,21 +22,26 @@ import diamondImg from './images/diamond.png';
     function startApp(){
          console.log('load grid..');
 
-        const totalGrid    = 64;
         const totalDiamonds  = 8;
 
-        for (let i = 0; i < totalDiamonds; i++ ) {
-            let position = Math.floor(Math.random() * 64) + 1;
-            randomPositions.push(`box-${position}`);
-             }
-        console.log(randomPositions);
+        //Generate Random numbers
+
+        for (let index = 0; index < totalDiamonds; index++ ) {
+            let position = Math.ceil(Math.random() * 64);
+            let tempPosition;
+            if (randomPositions.includes(position)) {
+                tempPosition = Math.ceil(Math.random() * position);
+                randomPositions.push(tempPosition);
+            }
+            randomPositions.push(`grid-${position}`);
+        }
          //display image in grid
          for (let item of container.children){
 
              item.addEventListener('click', changeImage);
-             let box = item.getAttribute('id');
+             let grid = item.getAttribute('id');
 
-             if (randomPositions.includes(box)) {
+             if (randomPositions.includes(grid)) {
 
                  item.style.backgroundImage = `${bgImage['background-diamond-image']},${bgImage['background-que-image']}`;
                  item.style.backgroundPosition = `${bgImage['background-que-position']},${bgImage['background-diamond-position']}`;
@@ -45,7 +50,7 @@ import diamondImg from './images/diamond.png';
 
              }
              else {
-                    item.style.backgroundImage      = `url(${bgImage['background-que-image']})`;
+                    item.style.backgroundImage      = `${bgImage['background-que-image']}`;
                     item.style.backgroundPosition   = `center`;
                     item.style.backgroundSize       = `${bgImage['background-size']}`;
                     item.style.backgroundRepeat     = `${bgImage['background-repeat']}`;
@@ -53,15 +58,33 @@ import diamondImg from './images/diamond.png';
 
          }
      }
+
     function changeImage(event) {
-        imgChangCount++;
-        console.log(imgChangCount);
-        console.log(event.target.id);
+
         let id = event.target.id;
+
         let chElement = document.getElementById(id);
+
         //change position of images on click.
-        chElement.style.backgroundPosition = `${bgImage['background-diamond-position']},${bgImage['background-que-position']}`;
-        console.log('changed img');
+        if (randomPositions.includes(id)) {
+            imgChangCount++;
+            if (imgChangCount !== 8) {
+                chElement.style.backgroundPosition = `${bgImage['background-diamond-position']},${bgImage['background-que-position']}`;
+                console.log('changed img');
+            }
+            else {
+                chElement.style.backgroundPosition = `
+                    ${bgImage['background-diamond-position']},
+                    ${bgImage['background-que-position']}
+                `;
+                chElement.removeEventListener('click', changeImage);
+                startApp();
+                return;
+            }
+        }
+        else {
+           chElement.style.background='none';
+        }
         chElement.removeEventListener('click', changeImage);
     }
      startApp();
