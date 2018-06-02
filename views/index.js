@@ -19,22 +19,31 @@ import diamondImg from './images/diamond.png';
     let imgChangCount=0;
     let randomPositions = [];
 
-    function startApp(){
-         console.log('load grid..');
-
+    function randomNumberCalc() {
         const totalDiamonds  = 8;
-
+        randomPositions.length=0;
         //Generate Random numbers
 
         for (let index = 0; index < totalDiamonds; index++ ) {
-            let position = Math.ceil(Math.random() * 64);
+            let position = Math.ceil(Math.random() * 61);
             let tempPosition;
-            if (randomPositions.includes(position)) {
-                tempPosition = Math.ceil(Math.random() * position);
-                randomPositions.push(tempPosition);
+            if (randomPositions.includes(`grid-${position}`)) {
+                console.log('prevent repeating numbers');
+                continue;
             }
             randomPositions.push(`grid-${position}`);
         }
+        if (randomPositions.length !== 8) {
+            let length = 8 - randomPositions.length;
+            for (let index = 1; index <= length; index++) {
+                randomPositions.push(`grid-${61 + index}`);
+            }
+        }
+    }
+    function startApp(){
+         console.log('load grid..');
+
+       randomNumberCalc();
          //display image in grid
          for (let item of container.children){
 
