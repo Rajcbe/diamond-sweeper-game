@@ -2,7 +2,8 @@ html{
   background: #badc58;
   padding:10px;
   .title{
-  text-align: center;
+    text-align: center;
+    font-size: 24px;
   }
 }
 .container{
@@ -26,10 +27,11 @@ html{
     text-align: center;
   }
 }
-@media (max-width: 768px) {
+@media (max-width: 767px) {
 .container{
   .box-wrapper{
     width: 100%;
+    height:350px;
   }
 }
 }
