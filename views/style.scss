@@ -26,3 +26,10 @@ html{
     text-align: center;
   }
 }
+@media (max-width: 768px) {
+.container{
+  .box-wrapper{
+    width: 100%;
+  }
+}
+}
