@@ -22,15 +22,16 @@ To run
 Download or clone the folder from github
 
 STEP 1:-> npm install
+STEP 2:-> npm start
 
-DEVELOPEMENT MODE:
+For DEVELOPEMENT MODE:
 
-Step 2: -> npm run dev
+Step 1: -> npm run dev
         ->project app will start in http://localhost:9000/
 
-PRODUCTION MODE:
+For PRODUCTION MODE after editing in dev mode:
 
-Step 2:-> npm run prod
+Step 1:-> npm run prod
        ->Public folder will be created and minified version of Project will be available then do the below step
        -> npm start
        ->project app will start in http://localhost:3000/
